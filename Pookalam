@@ -1,0 +1,230 @@
+from turtle import *
+
+#Screen Setup
+
+setup(width = 1.0,height = 1.0,startx = None , starty = None)
+
+#Background Gradient
+
+COLOR = (0.0, 0.3, 0.7)  
+TARGET = (0.01, 0.3, 0.0) 
+
+screen = Screen()
+screen.tracer(False)
+
+WIDTH, HEIGHT = screen.window_width(), screen.window_height()
+
+deltas = [(hue - COLOR[index]) / HEIGHT for index, hue in enumerate(TARGET)]
+
+turtle = Turtle()
+turtle.color(COLOR)
+
+turtle.penup()
+turtle.goto(-WIDTH/2, HEIGHT/2)
+turtle.pendown()
+
+direction = 1
+
+for distance, y in enumerate(range(HEIGHT//2, -HEIGHT//2, -1)):
+
+    turtle.forward(WIDTH * direction)
+    turtle.color([COLOR[i] + delta * distance for i, delta in enumerate(deltas)])
+    turtle.sety(y)
+
+    direction *= -1
+
+screen.tracer(True)
+
+
+#Destination
+
+pieceGoto_1 = (113,-98)
+pieceGoto_2 = (-65,-113)
+pieceGoto_3 = (-27,-66)
+pieceGoto_4 = (0,-90)
+pieceGoto_5 = (-35,-53)
+pieceGoto_6 = (-73,-44)
+pieceGoto_7 = (-75,0)
+pieceGoto_8 = (-37,-40)
+pieceGoto_9 = (3,-30)
+pieceGoto_10 = (-17,-10)
+pieceGoto_11 = (-150,240)
+pieceGoto_12 = (0,-180)
+pieceGoto_13 = (-5,-9)
+pieceGoto_14 = (150,-250)
+pieceGoto_15 = (-148,238)
+
+#Sizes
+
+size1 = 65
+size2 = 130
+size3 = 70
+size4 = 90
+size5 = 60
+size6 = 85
+size7 = 55
+size8 = 40
+size9 = 30
+size10 = 40
+size11 = 40
+size12 = 180
+size13 = 9
+size14 = 9
+
+#Colors
+
+color1 = '#fffc00' #yellow
+color2 = '#eb763f' #light orange
+color3 = '#ffa501' #Suncolor
+color4 = 'red' 
+color5 = '#660a66'#Vadamalli
+color6 = '#cc0122' #DArkred
+color7 = '#006dd4'  #peacock blue
+color8 = '#006603' #dark green
+color9 = '#ec5411' #orange
+color10= 'white'
+color11= '#480607' #brown
+
+#Fonts
+
+font1 = "Helvetica"
+
+#Text
+text1 = "Happy Onam"
+text2 = "@abhishekmanjeeram"
+
+#Functions to draw
+
+def flower(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    circle(100,-15)
+    for i in range(12):
+        circle(size,60)
+        lt(60)
+        circle(size,60)
+        rt(150)
+    end_fill()
+
+def sixPetal(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    color('red')
+    for i in range(6):
+        rt(180)
+        circle(size)
+        rt(180)
+        circle(size/5,-60)
+    end_fill()
+
+def twelvePetal(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    circle(100,-15)
+    for i in range(12):
+        rt(180)
+        circle(size*0.4)
+        rt(180)
+        circle(size,-30)
+    end_fill()
+
+def Circle(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    circle(size,360)
+    end_fill()
+
+def star(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    for i in range(16):
+        circle(size,67.5)
+        lt(135)
+    end_fill()
+
+def fourPetal(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    begin_fill()
+    for i in range(4):
+        circle(size,180)
+        lt(90)
+    end_fill()
+
+def circleDecor(pieceGoto,clr,size):
+    color(clr)
+    penup()
+    goto(pieceGoto)
+    pendown()
+    for i in range(12):
+        rt(180)
+        begin_fill()
+        circle(size/30)
+        end_fill()
+        rt(180)
+        penup()
+        circle(size,-30)
+        pendown()
+    
+
+def Text(text,pieceGoto,fonts,clr,size):
+    penup()
+    goto(pieceGoto)
+    pendown()
+    color(clr)
+    write(text,font = (fonts,size,"bold italic"))
+
+#Initial phase
+speed(0.1)
+color('#eccb05') # Yellow
+goto(0,-200)
+begin_fill()
+circle(200)
+end_fill()
+
+color('#400086') # violet blue
+penup()
+goto(0,-180)
+pendown()
+begin_fill()
+circle(180)
+end_fill()
+
+#Function Calling to draw
+   
+twelvePetal(pieceGoto_4,color10,size4)
+flower(pieceGoto_1,color9,size1)
+Circle(pieceGoto_2,color1,size2)
+twelvePetal(pieceGoto_3,color7,size3)
+twelvePetal(pieceGoto_5,color4,size5)
+Circle(pieceGoto_6,color8,size6)
+lt(15)
+fourPetal(pieceGoto_7,color6,size7)
+lt(45)
+fourPetal(pieceGoto_8,color5,size8)
+Circle(pieceGoto_9,color2,size9)
+star(pieceGoto_10,color3,size10)
+circleDecor(pieceGoto_12,color11,size12)
+Text(text1,pieceGoto_15,font1,color6,size11)
+Text(text1,pieceGoto_11,font1,color1,size11)
+fourPetal(pieceGoto_13,color4,size13)
+Text(text2,pieceGoto_14,font1,color10,size14)
+
+ht()
